@@ -206,6 +206,12 @@ EOT
   # Ensure only gp2 is set as default storage class
   oc patch storageclass gp3-csi -p '{"metadata": {"annotations": {"storageclass.kubernetes.io/is-default-class": "false"}}}'
 
+if [[ $CLUSTER_TYPE == "aws" ]]; then
+SCRIPT_STATUS=47
+      exit $SCRIPT_STATUS
+    fi
+
+
   ## Create bastion host
   cd $GIT_REPO_HOME/aws
   set +e
