@@ -198,6 +198,10 @@ EOT
   oc login -u $OCP_USERNAME -p $OCP_PASSWORD --server=https://api.${CLUSTER_NAME}.${BASE_DOMAIN}:6443
   log "==== Adding PID limits to worker nodes ===="
   oc create -f $GIT_REPO_HOME/templates/container-runtime-config.yml
+  if [[ $CLUSTER_TYPE == "aws" ]]; then
+	  SCRIPT_STATUS=47
+      exit $SCRIPT_STATUS
+    fi
   log "==== Creating storage classes namely, gp2, ocs-storagecluster-ceph-rbd, ocs-storagecluster-cephfs, & openshift-storage.noobaa.io ===="
   oc apply -f $GIT_REPO_HOME/aws/ocp-terraform/ocs/gp2.yaml
   oc apply -f $GIT_REPO_HOME/aws/ocp-terraform/ocs/ocs-storagecluster-cephfs.yaml
@@ -262,10 +266,7 @@ envsubst </tmp/dockerconfig.json >/tmp/.dockerconfigjson
 oc set data secret/pull-secret -n openshift-config --from-file=/tmp/.dockerconfigjson
 chmod 600 /tmp/.dockerconfigjson /tmp/dockerconfig.json
 
-if [[ $CLUSTER_TYPE == "aws" ]]; then
-SCRIPT_STATUS=47
-      exit $SCRIPT_STATUS
-    fi
+
 
 ## Configure OCP cluster
 log "==== OCP cluster configuration (Cert Manager) started ===="
