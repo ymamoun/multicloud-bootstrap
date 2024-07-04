@@ -17,30 +17,6 @@ metadata:
 spec:
   targetNamespaces:
   - openshift-storage
----
-apiVersion: operators.coreos.com/v1alpha1
-kind: Subscription
-metadata:
-  name: odf-operator
-  namespace: openshift-storage
-  labels:
-    operators.coreos.com/odf-operator.openshift-storage: ''
-spec:
-  channel: "stable-4.14"
-  installPlanApproval: Automatic
-  name: odf-operator
-  source: redhat-operators
-  sourceNamespace: openshift-marketplace
----
-apiVersion: odf.openshift.io/v1alpha1
-kind: StorageSystem
-metadata:
-  name: ocs-storagecluster-storagesystem
-  namespace: openshift-storage
-spec:
-  kind: storagecluster.ocs.openshift.io/v1
-  name: ocs-storagecluster
-  namespace: openshift-storage
 EOF
 }
 
