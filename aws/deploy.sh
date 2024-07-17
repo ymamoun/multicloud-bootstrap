@@ -246,7 +246,6 @@ EOT
   fi
 
   set -e
-
   # Backup deployment context
   cd $GIT_REPO_HOME
   rm -rf /tmp/mas-multicloud
@@ -291,7 +290,7 @@ chmod 600 /tmp/.dockerconfigjson /tmp/dockerconfig.json
 
 echo "Sleeping for 10mins"
 sleep 600
-echo "create spectrum fusion cr"  
+echo "create spectrum fusion cr"
 oc apply -f $GIT_REPO_HOME/aws/ocp-terraform/ocs/ocs-ibm-spectrum-fusion.yaml
 
 echo "Sleeping for 5mins"
