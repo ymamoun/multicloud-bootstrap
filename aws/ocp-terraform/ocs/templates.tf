@@ -221,6 +221,8 @@ spec:
           tags:
           - name: kubernetes.io/cluster/CLUSTERID
             value: owned
+          - name: Owner
+            value: mamoun@ibm.com            
           userDataSecret:
             name: worker-user-data
 %{endif}
@@ -291,6 +293,8 @@ spec:
           tags:
           - name: kubernetes.io/cluster/CLUSTERID
             value: owned
+          - name: Owner
+            value: mamoun@ibm.com            
           userDataSecret:
             name: worker-user-data
 %{endif}
@@ -361,6 +365,8 @@ spec:
           tags:
           - name: kubernetes.io/cluster/CLUSTERID
             value: owned
+          - name: Owner
+            value: mamoun@ibm.com
           userDataSecret:
             name: worker-user-data
 ---

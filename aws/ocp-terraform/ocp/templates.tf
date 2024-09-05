@@ -42,6 +42,8 @@ networking:
   - ${var.service_network_cidr}
 platform:
   aws:
+    userTags:
+      Owner: mamoun@ibm.com
     region: ${var.region}
     subnets:
     - ${var.master_subnet1_id}%{if var.multi_zone}${indent(4, "\n- ${var.master_subnet2_id}\n- ${var.master_subnet3_id}")}%{endif}
